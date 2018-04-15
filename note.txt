@@ -1,0 +1,25 @@
+1、初始化一个npm项目
+npm init;
+
+2、安装webpack 
+npm i webpack vue vue-loader
+安装连个依赖npm i css-loader vue-template-compiler
+
+src 文件夹 是用来放置我们的源码
+
+{
+  "name": "webpackcreatewebproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "webpack --config webpack.config.js"  //设置掉webpack.config.js文件打包不使用全局的webpack防止版本不一样出问题，调我们项目里面安装的webpack
+  },
+
+  构建工程
+  npm run build 
+  成功后会生成dist/bundle.js bundle.js 中是vue的原码
+
+  安装依赖：style-loader url-loader file-loader
+  npm i style-loader url-loader file-loader
