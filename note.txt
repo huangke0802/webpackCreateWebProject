@@ -23,3 +23,13 @@ src 文件夹 是用来放置我们的源码
 
   安装依赖：style-loader url-loader file-loader
   npm i style-loader url-loader file-loader
+
+
+  安装 webpack-dev-server 
+  npm install webpack-dev-server
+
+  安装cross-env 设置环境变量
+  npm i cross-env
+
+  安装 html-webpack-plugin 
+  npm i html-webpack-plugin
