@@ -33,3 +33,15 @@ src 文件夹 是用来放置我们的源码
 
   安装 html-webpack-plugin 
   npm i html-webpack-plugin
+
+  安装： npm i postcss-loader autoprefixer babel-core
+
+  安装：npm i babel-preset-env babel-plugin-transform-vue-jsx
+
+  安装 npm i babel-plugin-transform-vue-jsx babel-helper-vue-jsx-merge-props
+  安装npm install babel-loader
+
+
+安装css打包工具
+npm i extract-text-webpack-plugin
+ 

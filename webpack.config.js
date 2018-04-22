@@ -6,8 +6,10 @@ const HTMLPlugin = require("html-webpack-plugin");
 
 const webpack = require("webpack");
 
-const isDev = process.env.NODE_ENV === "development"
+const ExtractPlugin = require('extract-text-webpack-plugin');
 
+
+const isDev = process.env.NODE_ENV === "development";
 
 const config = {
   target: "web",
@@ -26,6 +28,10 @@ const config = {
         loader: "vue-loader" //使用vue-loader解析.vue文件
       },
       {
+        test: /\.jsx$/, //检测以.jsx文件
+        loader: "babel-loader" //用babel-loader解析.jsx文件
+      },
+      {
         test: /\.css$/, //检测以.css结尾的文件
         /* loader: "css-loader" //使用css-loader解析.css文件 */
         use: ["style-loader", "css-loader"]
@@ -33,7 +39,17 @@ const config = {
       {
         //css预处理器 styl
         test: /\.styl$/,
-        use: ["style-loader", "css-loader", "stylus-loader"]
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: false
+            }
+          },
+          "stylus-loader"
+        ]
       },
       {
         test: /\.(gif|jpg|png|svg)$/,
@@ -50,29 +66,29 @@ const config = {
     ]
   },
   plugins: [
-      new webpack.DefinePlugin({
-          'process.env' :{
-              NODE_ENV : isDev ? "'development'" : "'production'"
-          }
-      }),
-      new HTMLPlugin()
-    ]
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: isDev ? "'development'" : "'production'"
+      }
+    }),
+    new HTMLPlugin()
+  ]
 };
 
-if(isDev){
-    config.devtool = "#cheap-module-eval-source-map"
-    config.devServer = {
-        port : "8000",
-        host : "0.0.0.0",
-        overlay : {
-            errors : true
-        },
-        hot : true
-    }
-    config.plugins.push(
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
-    )
+if (isDev) {
+  config.devtool = "#cheap-module-eval-source-map";
+  config.devServer = {
+    port: "8000",
+    host: "0.0.0.0",
+    overlay: {
+      errors: true
+    },
+    hot: true
+  };
+  config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  );
 }
 
-module.exports = config
+module.exports = config;
